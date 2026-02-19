@@ -23,20 +23,15 @@ O script:
     -   4GB RAM
     -   2 vCPUs
 
-------------------------------------------------------------------------
-
-## 📦 Estrutura
-
-. ├── install_gitlab.sh └── README.md
-
-------------------------------------------------------------------------
+----------------------------------------------------------------------
 
 ## 🔧 Como Usar
 
 ### 1️⃣ Dê permissão de execução ao script
 
-chmod +x install_gitlab.sh
-
+```bash
+chmod +x setup_gitlabci.sh
+```
 ------------------------------------------------------------------------
 
 ### 2️⃣ Execute como root ou com sudo
@@ -45,7 +40,9 @@ Você pode executar de duas formas:
 
 ### ✔️ Usando o IP automático da máquina
 
-sudo ./install_gitlab.sh
+```bash
+sudo ./setup_gitlabci.sh
+```
 
 O script irá detectar automaticamente o IP local da máquina.
 
@@ -53,19 +50,23 @@ O script irá detectar automaticamente o IP local da máquina.
 
 ### ✔️ Informando um IP ou domínio manualmente
 
-sudo ./install_gitlab.sh 192.168.0.10
-
+```bash
+sudo ./setup_gitlabci.sh 192.168.0.10
+```
 ou
 
-sudo ./install_gitlab.sh gitlab.seudominio.com
-
+```bash
+sudo ./setup_gitlabci.sh gitlab.seudominio.com
+```
 ------------------------------------------------------------------------
 
 ## ⚙️ O Que o Script Faz
 
 ### 🔹 1. Atualiza o sistema
 
+```bash
 sudo apt-get update
+```
 
 ### 🔹 2. Instala dependências
 
@@ -78,13 +79,17 @@ sudo apt-get update
 
 ### 🔹 3. Adiciona repositório oficial do GitLab
 
+```bash
 curl -sS
 https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh
 \| sudo bash
+```
 
 ### 🔹 4. Instala o GitLab CE
 
+```bash
 sudo apt-get install gitlab-ce -y
+```
 
 ### 🔹 5. Configura o external_url
 
@@ -104,8 +109,9 @@ Arquivo alterado:
 
 ### 🔹 6. Executa o reconfigure
 
+```bash
 sudo gitlab-ctl reconfigure
-
+```
 ------------------------------------------------------------------------
 
 ## 🌐 Acesso ao GitLab
@@ -132,23 +138,25 @@ sudo cat /etc/gitlab/initial_root_password
 
 Certifique-se de que está rodando como root:
 
+```bash
 sudo ./install_gitlab.sh
-
+```
 ------------------------------------------------------------------------
 
 ### ❌ Porta 80 ocupada
 
 Verifique:
-
+```bash
 sudo lsof -i :80
-
+```
 ------------------------------------------------------------------------
 
 ### ❌ Falha no reconfigure
 
 Verifique logs:
-
+```bash
 sudo gitlab-ctl status sudo gitlab-ctl tail
+```
 
 ------------------------------------------------------------------------
 
